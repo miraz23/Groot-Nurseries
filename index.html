@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groot</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card:hover .quick-view {
+            opacity: 1;
+        }
+        .product-card .quick-view {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .product-image {
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -40,7 +63,7 @@
                             <circle cx="19" cy="21" r="1"></circle>
                             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
                         </svg>
-                        <span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-700 text-xs text-white">
+                        <span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-700 text-xs text-white" id="cart-count">
                             0
                         </span>
                         <span class="sr-only">Cart</span>
@@ -129,17 +152,17 @@
     <section class="relative w-full overflow-hidden" id="banner-carousel">
         <div class="flex transition-transform duration-500 ease-in-out" id="carousel-container">
             <!-- Slide 1 -->
-            <div class="relative min-w-full h-[70vh]">
+            <div class="relative min-w-full h-[80vh]">
                 <img src="banner-1.png" class="h-full w-full">
             </div>
 
             <!-- Slide 2 -->
-            <div class="relative min-w-full h-[70vh]">
+            <div class="relative min-w-full h-[80vh]">
                 <img src="banner-2.png" class="h-full w-full">
             </div>
 
             <!-- Slide 3 -->
-            <div class="relative min-w-full h-[70vh]">
+            <div class="relative min-w-full h-[80vh]">
                 <img src="banner-3.png" class="h-full w-full">
             </div>
         </div>
@@ -163,6 +186,56 @@
         <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2" id="carousel-indicators">
         </div>
     </section>
+
+    <!-- Our Products Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Our <span class="text-green-700">Products</span></h2>
+                <div class="w-24 h-1 bg-green-700 mx-auto mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover our carefully curated collection of plants and accessories to transform your space into a green paradise.</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center mb-10 gap-2">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-green-700 text-white font-medium transition-all hover:bg-green-800" data-category="all">All Products</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="indoor">Indoor Plants</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="outdoor">Outdoor Plants</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="accessories">Accessories</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+                <!-- Products will be loaded here via JavaScript -->
+                <div class="col-span-full text-center py-10">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-700"></div>
+                    <p class="mt-4 text-gray-600">Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" id="modal-overlay"></div>
+        <div class="relative bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-auto">
+            <button id="close-modal" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700 z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8" id="modal-content">
+                <!-- Modal content will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add to Cart Notification -->
+    <div id="cart-notification" class="fixed bottom-4 right-4 bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <p>Product added to cart!</p>
+    </div>
 
     <script src="script.js"></script>
 </body>
