@@ -27,6 +27,60 @@
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
+        .cart-item-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        #cart-panel {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            max-width: 100%;
+            z-index: 1000;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        }
+        #cart-panel.open {
+            transform: translateX(0);
+        }
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +111,7 @@
                         </svg>
                         <span class="sr-only">Account</span>
                     </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 relative">
+                    <button id="open-cart-btn" class="p-2 rounded-full hover:bg-gray-100 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="8" cy="21" r="1"></circle>
                             <circle cx="19" cy="21" r="1"></circle>
@@ -237,8 +291,6 @@
                 <button class="filter-btn active px-6 py-2 rounded-full bg-green-700 text-white font-medium transition-all hover:bg-green-800" data-category="all">All Products</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="indoor">Indoor Plants</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="outdoor">Outdoor Plants</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="seeds">Seeds</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="planter">Planter</button>
             </div>
 
             <!-- Products Grid -->
@@ -277,6 +329,80 @@
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8" id="modal-content">
                 <!-- Modal content will be loaded here via JavaScript -->
             </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Panel -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div id="cart-panel">
+        <!-- Cart Header -->
+        <div class="bg-green-700 text-white p-4 flex justify-between items-center">
+            <h2 class="text-xl font-bold flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                Your Cart (<span id="cart-items-count">0</span>)
+            </h2>
+            <button id="close-cart" class="text-white hover:text-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Cart Items -->
+        <div class="overflow-auto p-4 flex-grow" id="cart-items" style="max-height: calc(100vh - 350px);">
+            <div id="empty-cart-message" class="text-center py-8">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-gray-300 mb-4">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <p class="text-gray-500 text-lg">Your cart is empty</p>
+                <p class="text-gray-400 mt-2">Add some products to your cart</p>
+                <button id="continue-shopping" class="mt-4 px-6 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors">
+                    Continue Shopping
+                </button>
+            </div>
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        
+        <!-- Coupon Code -->
+        <div class="p-4 border-t border-gray-200 bg-gray-50">
+            <div class="flex items-center">
+                <input type="text" id="coupon-code" placeholder="Enter coupon code" class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                <button id="apply-coupon" class="px-4 py-2 bg-green-700 text-white rounded-r-md hover:bg-green-800 transition-colors">
+                    Apply
+                </button>
+            </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="p-4 border-t border-gray-200 bg-gray-50">
+            <div class="space-y-2 mb-4">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="flex justify-between hidden" id="discount-row">
+                    <span class="text-gray-600">Discount</span>
+                    <span id="cart-discount">-$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Shipping</span>
+                    <span id="cart-shipping">$0.00</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <button id="checkout-btn" class="w-full py-3 bg-green-700 text-white rounded-md font-medium hover:bg-green-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+                Proceed to Checkout
+            </button>
         </div>
     </div>
 
