@@ -840,4 +840,151 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Fetch products when the page loads
     fetchProducts();
+
+    // Reviews carousel functionality
+    const reviewsContainer = document.getElementById("reviews-container");
+    const prevReviewButton = document.getElementById("prev-review");
+    const nextReviewButton = document.getElementById("next-review");
+    const reviewIndicatorsContainer = document.getElementById("review-indicators");
+
+    if (!reviewsContainer || !prevReviewButton || !nextReviewButton || !reviewIndicatorsContainer) {
+      console.error("One or more review carousel elements not found");
+      return;
+    }
+
+    let currentReview = 0;
+    const totalReviews = reviewsContainer.children.length;
+    let visibleReviews = window.innerWidth < 768 ? 1 : 3;
+    let maxReviewIndex = totalReviews - visibleReviews;
+    let autoplayIntervalReview;
+    let isAutoPlayingReview = true;
+
+    // Create indicator dots
+    function createReviewIndicators() {
+      reviewIndicatorsContainer.innerHTML = "";
+      const numIndicators = maxReviewIndex + 1;
+
+      for (let i = 0; i < numIndicators; i++) {
+        const dot = document.createElement("button");
+        dot.classList.add("h-2", "rounded-full", "transition-all");
+
+        if (i === currentReview) {
+          dot.classList.add("w-6", "bg-green-700");
+        } else {
+          dot.classList.add("w-2", "bg-gray-300");
+        }
+
+        dot.setAttribute("aria-label", `Go to review slide ${i + 1}`);
+        dot.addEventListener("click", () => {
+          goToReview(i);
+          handleReviewInteraction();
+        });
+
+        reviewIndicatorsContainer.appendChild(dot);
+      }
+    }
+
+    // Function to update the carousel position
+    function updateReviewCarousel() {
+      const slidePercentage = 100 / visibleReviews;
+      reviewsContainer.style.transform = `translateX(-${currentReview * slidePercentage}%)`;
+
+      // Update indicators
+      const indicators = reviewIndicatorsContainer.children;
+      for (let i = 0; i < indicators.length; i++) {
+        if (i === currentReview) {
+          indicators[i].classList.add("w-6", "bg-green-700");
+          indicators[i].classList.remove("w-2", "bg-gray-300");
+        } else {
+          indicators[i].classList.remove("w-6", "bg-green-700");
+          indicators[i].classList.add("w-2", "bg-gray-300");
+        }
+      }
+    }
+
+    // Function to go to a specific review
+    function goToReview(index) {
+      currentReview = index;
+      updateReviewCarousel();
+    }
+
+    // Function to go to the next review
+    function nextReview() {
+      currentReview = (currentReview + 1) % (maxReviewIndex + 1);
+      updateReviewCarousel();
+    }
+
+    // Function to go to the previous review
+    function prevReview() {
+      currentReview = (currentReview - 1 + (maxReviewIndex + 1)) % (maxReviewIndex + 1);
+      updateReviewCarousel();
+    }
+
+    // Handle user interaction
+    function handleReviewInteraction() {
+      isAutoPlayingReview = false;
+      clearInterval(autoplayIntervalReview);
+
+      // Resume autoplay after 10 seconds of inactivity
+      setTimeout(() => {
+        startReviewAutoplay();
+      }, 10000);
+    }
+
+    // Start autoplay
+    function startReviewAutoplay() {
+      isAutoPlayingReview = true;
+      autoplayIntervalReview = setInterval(() => {
+        if (isAutoPlayingReview) {
+          nextReview();
+        }
+      }, 5000);
+    }
+
+    // Update visible reviews on window resize
+    function handleReviewResize() {
+      const newVisibleReviews = window.innerWidth < 768 ? 1 : 3;
+
+      if (visibleReviews !== newVisibleReviews) {
+        visibleReviews = newVisibleReviews;
+        maxReviewIndex = totalReviews - visibleReviews;
+
+        // Adjust current review if needed
+        if (currentReview > maxReviewIndex) {
+          currentReview = maxReviewIndex;
+        }
+
+        createReviewIndicators();
+        updateReviewCarousel();
+      }
+    }
+
+    // Event listeners for navigation
+    prevReviewButton.addEventListener("click", () => {
+      prevReview();
+      handleReviewInteraction();
+    });
+
+    nextReviewButton.addEventListener("click", () => {
+      nextReview();
+      handleReviewInteraction();
+    });
+
+    // Pause autoplay on hover
+    const reviewsCarousel = document.getElementById("reviews-carousel");
+    reviewsCarousel.addEventListener("mouseenter", () => {
+      isAutoPlayingReview = false;
+      clearInterval(autoplayIntervalReview);
+    });
+
+    reviewsCarousel.addEventListener("mouseleave", () => {
+      startReviewAutoplay();
+    });
+
+    // Handle window resize
+    window.addEventListener("resize", handleReviewResize);
+
+    // Initialize
+    createReviewIndicators();
+    startReviewAutoplay();
   });
