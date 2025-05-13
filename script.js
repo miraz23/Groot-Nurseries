@@ -987,4 +987,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     createReviewIndicators();
     startReviewAutoplay();
+
+        // FAQ functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+    
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                // Get the answer element
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                
+                // Toggle the answer visibility
+                if (answer.classList.contains('hidden')) {
+                    // Close all other open FAQs
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer && !item.classList.contains('hidden')) {
+                            item.classList.add('hidden');
+                            // Reset all other icons
+                            item.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate-180');
+                        }
+                    });
+                    
+                    // Open this FAQ
+                    answer.classList.remove('hidden');
+                    // Animate with a slight delay for better UX
+                    setTimeout(() => {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }, 10);
+                    // Rotate icon
+                    icon.classList.add('rotate-180');
+                } else {
+                    // Close this FAQ
+                    answer.classList.add('hidden');
+                    // Reset icon
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+        
+        // Optional: Open the first FAQ by default
+        if (faqQuestions.length > 0) {
+            const firstQuestion = faqQuestions[0];
+            const firstAnswer = firstQuestion.nextElementSibling;
+            const firstIcon = firstQuestion.querySelector('.faq-icon');
+            
+            firstAnswer.classList.remove('hidden');
+            firstIcon.classList.add('rotate-180');
+        }
   });
