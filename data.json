@@ -3,90 +3,130 @@
         "id": 1,
         "name": "Peace Lily",
         "price": 24.99,
+        "salePrice": 19.99,
+        "onSale": true,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.7,
+        "careLevel": "Easy",
+        "description": "The Peace Lily is a popular indoor plant known for its beautiful white flowers and air-purifying qualities. It thrives in low to medium light and requires moderate watering.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Peace-lily-Plant1-300x300.jpg-tfEHANsQW25o0Ne0l8YY0RmGnVHBwe.jpeg"
     },
     {
         "id": 2,
         "name": "Haworthia",
         "price": 12.99,
+        "salePrice": 12.99,
+        "onSale": false,
+        "isNew": true,
+        "category": "succulent",
+        "rating": 4.3,
+        "careLevel": "Easy",
+        "description": "Haworthia is a small, low-growing succulent that forms rosettes of fleshy green leaves. It's perfect for beginners and requires minimal care with infrequent watering.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-3.jpg-r6jZVZaJL7pBQrw6AxPx5YsEaphBJA.jpeg"
     },
     {
         "id": 3,
         "name": "Spider Plant",
         "price": 18.99,
+        "salePrice": 15.99,
+        "onSale": true,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.8,
+        "careLevel": "Easy",
+        "description": "The Spider Plant is one of the most adaptable houseplants and is very easy to grow. It gets its name from the spider-like plants that dangle from the mother plant like spiders on a web.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-2.jpg-Tp1Ohl8P6WyPrhHzYDaEr0slim19eD.jpeg"
     },
     {
         "id": 4,
         "name": "Chinese Evergreen",
         "price": 29.99,
+        "salePrice": 29.99,
+        "onSale": false,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.5,
+        "careLevel": "Easy",
+        "description": "The Chinese Evergreen is a popular houseplant that is very easy to grow. It thrives in low to medium light and requires moderate watering, making it perfect for beginners.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-1.jpg-Au01lk2hANGVorHFUsmVbWQRJiuDpy.jpeg"
     },
     {
         "id": 5,
         "name": "Rubber Plant",
         "price": 34.99,
+        "salePrice": 29.99,
+        "onSale": true,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.6,
+        "careLevel": "Moderate",
+        "description": "The Rubber Plant is a popular houseplant with thick, leathery leaves. It's relatively easy to care for and can grow into an impressive indoor tree with proper care.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Rubber-Plant3-300x300.jpg-VYtBI0rtMPn1jyBSAGl4xHSFgmWBgj.jpeg"
     },
     {
         "id": 6,
         "name": "Lucky Bamboo",
         "price": 15.99,
+        "salePrice": 15.99,
+        "onSale": false,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.2,
+        "careLevel": "Easy",
+        "description": "Lucky Bamboo is a popular indoor plant that is believed to bring good luck and fortune. It's easy to care for and can thrive in water or soil.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shukh-shanti1-300x300.jpg-tcUmdQ01P69n9Vt8utIApVBVGFNUBn.jpeg"
     },
     {
         "id": 7,
         "name": "Snake Plant",
         "price": 19.99,
+        "salePrice": 19.99,
+        "onSale": false,
+        "isNew": false,
+        "category": "indoor",
+        "rating": 4.9,
+        "careLevel": "Easy",
+        "description": "The Snake Plant is one of the most tolerant houseplants you can find. It can survive low light levels, drought, and generally thrives on neglect, making it perfect for beginners.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Snake-Plant6-300x300.jpg-YoclqE5AzHWsmjaLXSQIjgs16t8bcQ.jpeg"
     },
     {
         "id": 8,
         "name": "Blue Square Planters",
         "price": 39.99,
+        "salePrice": 34.99,
+        "onSale": true,
+        "isNew": true,
+        "category": "planter",
+        "rating": 4.4,
+        "careLevel": "N/A",
+        "description": "These stylish blue square planters are perfect for showcasing your favorite plants. The set includes 6 planters of varying sizes to accommodate different plants.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c-planter-with-rounded-edges-blue-set-of-6-1-AdNXQpKw5CMtVrflhqXyd17Hrss4A0.png"
     },
     {
         "id": 9,
         "name": "Jade Plant",
         "price": 22.99,
+        "salePrice": 22.99,
+        "onSale": false,
+        "isNew": false,
+        "category": "succulent",
+        "rating": 4.5,
+        "careLevel": "Easy",
+        "description": "The Jade Plant is a popular succulent houseplant with thick, woody stems and oval-shaped leaves. It's believed to bring good luck and prosperity to its owner.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4311-300x300.jpg-VWe8gMoGe1d24fC9Wx0WoCAEwaMOs5.jpeg"
     },
     {
         "id": 10,
         "name": "Areca Palm",
         "price": 39.99,
+        "salePrice": 39.99,
+        "onSale": false,
+        "isNew": true,
+        "category": "indoor",
+        "rating": 4.3,
+        "careLevel": "Moderate",
+        "description": "The Areca Palm is a popular indoor palm known for its feathery, arching fronds. It's an excellent air purifier and adds a tropical feel to any space.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Areca-Palm-Plant3-300x300.jpg-V28OpPqOuhFbhHC0MiAVdiReWMFVaT.jpeg"
-    },
-    {
-        "id": 11,
-        "name": "Monstera",
-        "price": 45.99,
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/monstera.jpg"
-    },
-    {
-        "id": 12,
-        "name": "Pothos",
-        "price": 16.99,
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/pothos.jpg"
-    },
-    {
-        "id": 13,
-        "name": "Fiddle Leaf Fig",
-        "price": 49.99,
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/fiddle-leaf.jpg"
-    },
-    {
-        "id": 14,
-        "name": "ZZ Plant",
-        "price": 27.99,
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/zz-plant.jpg"
-    },
-    {
-        "id": 15,
-        "name": "Aloe Vera",
-        "price": 14.99,
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/aloe-vera.jpg"
     }
 ]
