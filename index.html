@@ -152,17 +152,17 @@
     <section class="relative w-full overflow-hidden" id="banner-carousel">
         <div class="flex transition-transform duration-500 ease-in-out" id="carousel-container">
             <!-- Slide 1 -->
-            <div class="relative min-w-full h-[80vh]">
+            <div class="relative min-w-full h-[70vh]">
                 <img src="banner-1.png" class="h-full w-full">
             </div>
 
             <!-- Slide 2 -->
-            <div class="relative min-w-full h-[80vh]">
+            <div class="relative min-w-full h-[70vh]">
                 <img src="banner-2.png" class="h-full w-full">
             </div>
 
             <!-- Slide 3 -->
-            <div class="relative min-w-full h-[80vh]">
+            <div class="relative min-w-full h-[70vh]">
                 <img src="banner-3.png" class="h-full w-full">
             </div>
         </div>
@@ -187,6 +187,41 @@
         </div>
     </section>
 
+    <!-- Specialty Bar -->
+    <section class="bg-green-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                    </svg>
+                    <span>Secure Shopping</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>Nationwide Delivery</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span>Quality Guaranteed</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-300">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                    </svg>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Our Products Section -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
@@ -202,7 +237,8 @@
                 <button class="filter-btn active px-6 py-2 rounded-full bg-green-700 text-white font-medium transition-all hover:bg-green-800" data-category="all">All Products</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="indoor">Indoor Plants</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="outdoor">Outdoor Plants</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="accessories">Accessories</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="seeds">Seeds</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium transition-all hover:bg-gray-300" data-category="planter">Planter</button>
             </div>
 
             <!-- Products Grid -->
@@ -212,6 +248,18 @@
                     <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-700"></div>
                     <p class="mt-4 text-gray-600">Loading products...</p>
                 </div>
+            </div>
+
+            <!-- See More/Less Buttons -->
+            <div class="text-center mt-12 space-x-4">
+                <button id="see-more-btn" class="flex items-center px-8 py-3 bg-green-700 text-white rounded-full font-medium hover:bg-green-800 transition-colors transform hover:scale-105">
+                    See More
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </button>
+                <button id="see-less-btn" class="flex items-center px-8 py-3 bg-gray-700 text-white rounded-full font-medium hover:bg-gray-800 transition-colors transform hover:scale-105 hidden">
+                    See Less
+                    <i class="fas fa-arrow-up ml-2"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -236,6 +284,92 @@
     <div id="cart-notification" class="fixed bottom-4 right-4 bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
         <p>Product added to cart!</p>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Groot Nurseries</h3>
+                    <p class="mb-4">Your trusted source for quality plants and gardening supplies since 1995.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-green-500 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="hover:text-green-500 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="hover:text-green-500 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="hover:text-green-500 transition-colors">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-green-500 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-green-500 transition-colors">Our Products</a></li>
+                        <li><a href="#" class="hover:text-green-500 transition-colors">Plant Care Guide</a></li>
+                        <li><a href="#" class="hover:text-green-500 transition-colors">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-green-500 transition-colors">Return Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span>Agrabad, Chattogram</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone"></i>
+                            <span>(+880) 1880602693</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@grootnurseries.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Sat: 9AM - 6PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="mb-4">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                    <form class="space-y-2">
+                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:outline-none focus:border-green-500">
+                        <button type="submit" class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm mb-4 md:mb-0">&copy; 2024 Groot Nurseries. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-sm hover:text-green-500 transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-sm hover:text-green-500 transition-colors">Terms of Service</a>
+                        <a href="#" class="text-sm hover:text-green-500 transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

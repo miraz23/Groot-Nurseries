@@ -19,7 +19,7 @@
         "salePrice": 12.99,
         "onSale": false,
         "isNew": true,
-        "category": "succulent",
+        "category": "indoor",
         "rating": 4.3,
         "careLevel": "Easy",
         "description": "Haworthia is a small, low-growing succulent that forms rosettes of fleshy green leaves. It's perfect for beginners and requires minimal care with infrequent watering.",
@@ -75,7 +75,7 @@
         "rating": 4.2,
         "careLevel": "Easy",
         "description": "Lucky Bamboo is a popular indoor plant that is believed to bring good luck and fortune. It's easy to care for and can thrive in water or soil.",
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shukh-shanti1-300x300.jpg-tcUmdQ01P69n9Vt8utIApVBVGFNUBn.jpeg"
+        "image": "https://www.urbanplant.in/cdn/shop/files/Primary_webp_42f895f0-0a85-4fd0-ba2c-08b246c831bc.webp?v=1734074274"
     },
     {
         "id": 7,
@@ -105,16 +105,16 @@
     },
     {
         "id": 9,
-        "name": "Jade Plant",
+        "name": "ZZ Plant",
         "price": 22.99,
         "salePrice": 22.99,
         "onSale": false,
         "isNew": false,
-        "category": "succulent",
+        "category": "outdoor",
         "rating": 4.5,
         "careLevel": "Easy",
-        "description": "The Jade Plant is a popular succulent houseplant with thick, woody stems and oval-shaped leaves. It's believed to bring good luck and prosperity to its owner.",
-        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4311-300x300.jpg-VWe8gMoGe1d24fC9Wx0WoCAEwaMOs5.jpeg"
+        "description": "The ZZ Plant is outdoor as well as indoor plant efficient for elimination harmful contaiminats such as formaldenyde benzew good for feng shui.",
+        "image": "https://www.greenearthnurseries.in/wp-content/uploads/2024/02/ZZ-Plant3-1.jpg"
     },
     {
         "id": 10,
@@ -128,5 +128,31 @@
         "careLevel": "Moderate",
         "description": "The Areca Palm is a popular indoor palm known for its feathery, arching fronds. It's an excellent air purifier and adds a tropical feel to any space.",
         "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Areca-Palm-Plant3-300x300.jpg-V28OpPqOuhFbhHC0MiAVdiReWMFVaT.jpeg"
+    },
+    {
+        "id": 11,
+        "name": "Nirgundi",
+        "price": 49.99,
+        "salePrice": 49.99,
+        "onSale": false,
+        "isNew": true,
+        "category": "outdoor",
+        "rating": 4.3,
+        "careLevel": "Moderate",
+        "description": "The Nirgundi is a popular outdoor plant known for its beautiful flowers and air-purifying qualities. It thrives in low to medium light and requires moderate watering.",
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shukh-shanti1-300x300.jpg-tcUmdQ01P69n9Vt8utIApVBVGFNUBn.jpeg"
+    },
+    {
+        "id": 12,
+        "name": "Sunflower Seeds",
+        "price": 19.99,
+        "salePrice": 19.99,
+        "onSale": false,
+        "isNew": true,
+        "category": "seeds",
+        "rating": 4.3,
+        "careLevel": "Easy",
+        "description": "The Sunflower Seeds are a popular outdoor plant known for its beautiful flowers and air-purifying qualities. It thrives in low to medium light and requires moderate watering.",
+        "image": "https://australianwheatgrass.com.au/cdn/shop/products/Grey-Striped-Sunflower-Sprouting-Seeds_800x.jpg?v=1653413638"
     }
 ]

@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Global variables
   let allProducts = [];
   let cartCount = 0;
+  let currentPage = 1;
+  const productsPerPage = 8;
   const productsGrid = document.getElementById('products-grid');
   const cartCountElement = document.getElementById('cart-count');
   const quickViewModal = document.getElementById('quick-view-modal');
@@ -137,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeModal = document.getElementById('close-modal');
   const modalOverlay = document.getElementById('modal-overlay');
   const cartNotification = document.getElementById('cart-notification');
+  const seeMoreBtn = document.getElementById('see-more-btn');
+  const seeLessBtn = document.getElementById('see-less-btn');
 
   // Fetch products from API
   async function fetchProducts() {
@@ -147,8 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           const data = await response.json();
           allProducts = data;
-          renderProducts(allProducts);
+          renderProducts(allProducts.slice(0, productsPerPage));
           setupFilterButtons();
+          updateButtonVisibility();
       } catch (error) {
           console.error('Error fetching products:', error);
           productsGrid.innerHTML = `
@@ -160,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Render products to the grid
-  function renderProducts(products) {
+  function renderProducts(products, append = false) {
       if (products.length === 0) {
           productsGrid.innerHTML = `
               <div class="col-span-full text-center py-10">
@@ -170,7 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
           return;
       }
 
-      productsGrid.innerHTML = '';
+      if (!append) {
+          productsGrid.innerHTML = '';
+      }
       
       products.forEach(product => {
           const productCard = document.createElement('div');
@@ -212,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               <div class="p-4">
                   <h3 class="font-semibold text-lg mb-1 text-gray-900">${product.name}</h3>
-                  <p class="text-gray-600 text-sm mb-3">${product.shortDescription || product.category}</p>
+                  <p class="text-gray-600 text-sm mb-3">${product.shortDescription || ''}</p>
                   <div class="flex justify-between items-center mb-3">
                       <span class="font-bold text-gray-900">${formattedPrice}</span>
                       ${discountHtml}
@@ -299,8 +306,56 @@ document.addEventListener('DOMContentLoaded', function() {
           filteredProducts = allProducts.filter(product => product.category.toLowerCase() === category);
       }
       
-      renderProducts(filteredProducts);
+      currentPage = 1;
+      renderProducts(filteredProducts.slice(0, productsPerPage));
+      updateButtonVisibility(filteredProducts);
   }
+
+  // Update button visibility
+  function updateButtonVisibility(filteredProducts = allProducts) {
+      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+      
+      if (currentPage >= totalPages) {
+          seeMoreBtn.style.display = 'none';
+      } else {
+          seeMoreBtn.style.display = 'inline-flex';
+      }
+
+      if (currentPage > 1) {
+          seeLessBtn.style.display = 'inline-flex';
+      } else {
+          seeLessBtn.style.display = 'none';
+      }
+  }
+
+  // Load more products
+  function loadMoreProducts() {
+      const start = currentPage * productsPerPage;
+      const end = start + productsPerPage;
+      const moreProducts = allProducts.slice(start, end);
+      
+      if (moreProducts.length > 0) {
+          currentPage++;
+          renderProducts(moreProducts, true);
+          updateButtonVisibility();
+      }
+  }
+
+  // Load less products
+  function loadLessProducts() {
+      if (currentPage > 1) {
+          currentPage--;
+          const start = 0;
+          const end = currentPage * productsPerPage;
+          const products = allProducts.slice(start, end);
+          renderProducts(products);
+          updateButtonVisibility();
+      }
+  }
+
+  // Event listeners for buttons
+  seeMoreBtn.addEventListener('click', loadMoreProducts);
+  seeLessBtn.addEventListener('click', loadLessProducts);
 
   // Open quick view modal
   function openQuickView(productId) {
@@ -358,7 +413,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <div>
               <div class="text-yellow-400 mb-2">${stars}</div>
               <h2 class="text-2xl font-bold text-gray-900 mb-2">${product.name}</h2>
-              <p class="text-gray-600 mb-4">${product.description || product.shortDescription}</p>
+              <p class="text-gray-600 mb-2">${product.description || product.shortDescription}</p>
+              <p class="text-green-700 font-medium mb-4">Category: ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
               
               <div class="flex items-center mb-4">
                   <span class="font-bold text-2xl text-gray-900">${formattedPrice}</span>
