@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Peace Lily",
+        "price": 24.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Peace-lily-Plant1-300x300.jpg-tfEHANsQW25o0Ne0l8YY0RmGnVHBwe.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Haworthia",
+        "price": 12.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-3.jpg-r6jZVZaJL7pBQrw6AxPx5YsEaphBJA.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "Spider Plant",
+        "price": 18.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-2.jpg-Tp1Ohl8P6WyPrhHzYDaEr0slim19eD.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "Chinese Evergreen",
+        "price": 29.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/plant-1.jpg-Au01lk2hANGVorHFUsmVbWQRJiuDpy.jpeg"
+    },
+    {
+        "id": 5,
+        "name": "Rubber Plant",
+        "price": 34.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Rubber-Plant3-300x300.jpg-VYtBI0rtMPn1jyBSAGl4xHSFgmWBgj.jpeg"
+    },
+    {
+        "id": 6,
+        "name": "Lucky Bamboo",
+        "price": 15.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shukh-shanti1-300x300.jpg-tcUmdQ01P69n9Vt8utIApVBVGFNUBn.jpeg"
+    },
+    {
+        "id": 7,
+        "name": "Snake Plant",
+        "price": 19.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Snake-Plant6-300x300.jpg-YoclqE5AzHWsmjaLXSQIjgs16t8bcQ.jpeg"
+    },
+    {
+        "id": 8,
+        "name": "Blue Square Planters",
+        "price": 39.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c-planter-with-rounded-edges-blue-set-of-6-1-AdNXQpKw5CMtVrflhqXyd17Hrss4A0.png"
+    },
+    {
+        "id": 9,
+        "name": "Jade Plant",
+        "price": 22.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4311-300x300.jpg-VWe8gMoGe1d24fC9Wx0WoCAEwaMOs5.jpeg"
+    },
+    {
+        "id": 10,
+        "name": "Areca Palm",
+        "price": 39.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Areca-Palm-Plant3-300x300.jpg-V28OpPqOuhFbhHC0MiAVdiReWMFVaT.jpeg"
+    },
+    {
+        "id": 11,
+        "name": "Monstera",
+        "price": 45.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/monstera.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Pothos",
+        "price": 16.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/pothos.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Fiddle Leaf Fig",
+        "price": 49.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/fiddle-leaf.jpg"
+    },
+    {
+        "id": 14,
+        "name": "ZZ Plant",
+        "price": 27.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/zz-plant.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Aloe Vera",
+        "price": 14.99,
+        "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/images/aloe-vera.jpg"
+    }
+]
