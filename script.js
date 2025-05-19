@@ -94,18 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updateCarousel();
     }
   
-    // Handling user interaction
-    function handleInteraction() {
-      isAutoPlaying = false;
-      clearInterval(autoplayInterval);
-      
-      // Resuming autoplay after 10 seconds of inactivity
-      setTimeout(() => {
-        startAutoplay();
-      }, 10000);
-    }
-  
-    // Start autoplay
+    // Starting autoplay
     function startAutoplay() {
       isAutoPlaying = true;
       autoplayInterval = setInterval(() => {
@@ -176,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Coupon elements
     const couponInput = document.getElementById('coupon-code');
     const applyCouponBtn = document.getElementById('apply-coupon');
-    const couponMessage = document.getElementById('coupon-message');
     
     // Shipping elements
     const shippingOptions = document.querySelectorAll('input[name="shipping"]');
@@ -548,12 +536,6 @@ document.addEventListener('DOMContentLoaded', function() {
       cartNotification.textContent = `${product.name} added to cart!`;
       cartNotification.classList.remove('translate-y-20', 'opacity-0');
       
-      // Shaking the cart icon
-      openCartBtn.classList.add('shake');
-      setTimeout(() => {
-        openCartBtn.classList.remove('shake');
-      }, 500);
-      
       // Hiding notification after 3 seconds
       setTimeout(() => {
         cartNotification.classList.add('translate-y-20', 'opacity-0');
@@ -698,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Using fixed shipping cost
-      let finalShippingCost = shippingCost;
+      let finalShippingCost = cartItems.length > 0 ? shippingCost : 0;
       
       // Applying free shipping if coupon provides it
       if (appliedCoupon && appliedCoupon.freeShipping) {
@@ -754,32 +736,6 @@ document.addEventListener('DOMContentLoaded', function() {
       cartPanel.classList.remove('open');
       cartOverlay.classList.remove('open');
       document.body.style.overflow = ''; // Restore scrolling
-    }
-  
-    // Show coupon message
-    function showCouponMessage(message, type) {
-      if (!message) {
-        clearCouponMessage();
-        return;
-      }
-      
-      couponMessage.textContent = message;
-      couponMessage.classList.remove('hidden');
-      
-      if (type === 'error') {
-        couponMessage.classList.remove('text-green-500');
-        couponMessage.classList.add('text-red-500');
-      } else {
-        couponMessage.classList.remove('text-red-500');
-        couponMessage.classList.add('text-green-500');
-      }
-    }
-  
-    // Clearing coupon message
-    function clearCouponMessage() {
-      couponMessage.textContent = '';
-      couponMessage.classList.add('hidden');
-      couponMessage.classList.remove('text-green-500', 'text-red-500');
     }
   
     // Event listeners for cart panel
@@ -862,11 +818,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextReviewButton = document.getElementById("next-review");
     const reviewIndicatorsContainer = document.getElementById("review-indicators");
 
-    if (!reviewsContainer || !prevReviewButton || !nextReviewButton || !reviewIndicatorsContainer) {
-      console.error("One or more review carousel elements not found");
-      return;
-    }
-
     let currentReview = 0;
     const totalReviews = reviewsContainer.children.length;
     let visibleReviews = window.innerWidth < 768 ? 1 : 3;
@@ -874,53 +825,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let autoplayIntervalReview;
     let isAutoPlayingReview = true;
 
-    // Create indicator dots
-    function createReviewIndicators() {
-      reviewIndicatorsContainer.innerHTML = "";
-      const numIndicators = maxReviewIndex + 1;
-
-      for (let i = 0; i < numIndicators; i++) {
-        const dot = document.createElement("button");
-        dot.classList.add("h-2", "rounded-full", "transition-all");
-
-        if (i === currentReview) {
-          dot.classList.add("w-6", "bg-green-700");
-        } else {
-          dot.classList.add("w-2", "bg-gray-300");
-        }
-
-        dot.setAttribute("aria-label", `Go to review slide ${i + 1}`);
-        dot.addEventListener("click", () => {
-          goToReview(i);
-          handleReviewInteraction();
-        });
-
-        reviewIndicatorsContainer.appendChild(dot);
-      }
-    }
-
     // Function to update the carousel position
     function updateReviewCarousel() {
       const slidePercentage = 100 / visibleReviews;
       reviewsContainer.style.transform = `translateX(-${currentReview * slidePercentage}%)`;
-
-      // Update indicators
-      const indicators = reviewIndicatorsContainer.children;
-      for (let i = 0; i < indicators.length; i++) {
-        if (i === currentReview) {
-          indicators[i].classList.add("w-6", "bg-green-700");
-          indicators[i].classList.remove("w-2", "bg-gray-300");
-        } else {
-          indicators[i].classList.remove("w-6", "bg-green-700");
-          indicators[i].classList.add("w-2", "bg-gray-300");
-        }
-      }
-    }
-
-    // Function to go to a specific review
-    function goToReview(index) {
-      currentReview = index;
-      updateReviewCarousel();
     }
 
     // Function to go to the next review
@@ -933,17 +841,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function prevReview() {
       currentReview = (currentReview - 1 + (maxReviewIndex + 1)) % (maxReviewIndex + 1);
       updateReviewCarousel();
-    }
-
-    // Handling user interaction
-    function handleReviewInteraction() {
-      isAutoPlayingReview = false;
-      clearInterval(autoplayIntervalReview);
-
-      // Resuming autoplay after 10 seconds of inactivity
-      setTimeout(() => {
-        startReviewAutoplay();
-      }, 10000);
     }
 
     // Starting autoplay
@@ -977,12 +874,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for navigation
     prevReviewButton.addEventListener("click", () => {
       prevReview();
-      handleReviewInteraction();
+      // handleReviewInteraction();
     });
 
     nextReviewButton.addEventListener("click", () => {
       nextReview();
-      handleReviewInteraction();
+      // handleReviewInteraction();
     });
 
     // Pause autoplay on hover
@@ -1000,7 +897,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener("resize", handleReviewResize);
 
     // Initialize
-    createReviewIndicators();
     startReviewAutoplay();
 
     // ================================ FAQ functionality ================================
@@ -1026,10 +922,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Open this FAQ
                 answer.classList.remove('hidden');
-                // Animate with a slight delay for better UX
-                setTimeout(() => {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                }, 10);
                 // Rotate icon
                 icon.classList.add('rotate-180');
             } else {
@@ -1040,16 +932,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Open the first FAQ by default
-    if (faqQuestions.length > 0) {
-        const firstQuestion = faqQuestions[0];
-        const firstAnswer = firstQuestion.nextElementSibling;
-        const firstIcon = firstQuestion.querySelector('.faq-icon');
-        
-        firstAnswer.classList.remove('hidden');
-        firstIcon.classList.add('rotate-180');
-    }
 
     // ================================ Search functionality ================================
 
@@ -1101,11 +983,6 @@ document.addEventListener('DOMContentLoaded', function() {
         clearCart();
         // Close cart panel
         closeCartPanel();
-    }
-
-    function closeSuccessModal() {
-        const modal = document.getElementById('success-modal');
-        modal.classList.remove('show');
     }
 
     // Clear cart function
